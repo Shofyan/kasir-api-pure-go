@@ -31,8 +31,7 @@ WORKDIR /root/
 # Copy the binary from builder stage
 COPY --from=builder /app/main .
 
-# Copy static files
-COPY --from=builder /app/static ./static
+
 
 # Expose port 8080
 EXPOSE 8080
