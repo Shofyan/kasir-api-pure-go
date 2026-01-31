@@ -27,12 +27,10 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/api/categories",
-              "protocol": "http",
+              "raw": "{{host}}/api/categories",
               "host": [
-                "localhost"
+                "{{host}}"
               ],
-              "port": "8080",
               "path": [
                 "api",
                 "categories"
@@ -60,12 +58,10 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/api/categories/1",
-              "protocol": "http",
+              "raw": "{{host}}/api/categories/1",
               "host": [
-                "localhost"
+                "{{host}}"
               ],
-              "port": "8080",
               "path": [
                 "api",
                 "categories",
@@ -85,12 +81,10 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/api/categories",
-              "protocol": "http",
+              "raw": "{{host}}/api/categories",
               "host": [
-                "localhost"
+                "{{host}}"
               ],
-              "port": "8080",
               "path": [
                 "api",
                 "categories"
@@ -106,12 +100,10 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/api/categories/1",
-              "protocol": "http",
+              "raw": "{{host}}/api/categories/1",
               "host": [
-                "localhost"
+                "{{host}}"
               ],
-              "port": "8080",
               "path": [
                 "api",
                 "categories",
@@ -146,12 +138,10 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/api/produk",
-              "protocol": "http",
+              "raw": "{{host}}/api/produk",
               "host": [
-                "localhost"
+                "{{host}}"
               ],
-              "port": "8080",
               "path": [
                 "api",
                 "produk"
@@ -179,14 +169,11 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/api/categories/1",
-              "protocol": "http",
+              "raw": "{{host}}api/categories/1",
               "host": [
-                "localhost"
+                "{{host}}api"
               ],
-              "port": "8080",
               "path": [
-                "api",
                 "categories",
                 "1"
               ]
@@ -204,12 +191,10 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/api/produk",
-              "protocol": "http",
+              "raw": "{{host}}/api/produk",
               "host": [
-                "localhost"
+                "{{host}}"
               ],
-              "port": "8080",
               "path": [
                 "api",
                 "produk"
@@ -225,12 +210,10 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/api/categories/1",
-              "protocol": "http",
+              "raw": "{{host}}/api/categories/1",
               "host": [
-                "localhost"
+                "{{host}}"
               ],
-              "port": "8080",
               "path": [
                 "api",
                 "categories",
@@ -242,6 +225,14 @@
         }
       ],
       "id": "057973aa-9396-4c97-9c98-169216a9cd06"
+    }
+  ],
+  "variable": [
+    {
+      "id": "f44af12b-34a6-4e3d-b742-3bca3826c74d",
+      "key": "host",
+      "value": "",
+      "type": "default"
     }
   ]
 }
