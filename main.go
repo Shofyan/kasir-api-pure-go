@@ -20,13 +20,8 @@ import (
 )
 
 type Config struct {
-	Port   string `mapstructure:"PORT"`
-	DBHost string `mapstructure:"DB_HOST"`
-	DBPort string `mapstructure:"DB_PORT"`
-	DBUser string `mapstructure:"DB_USER"`
-	DBPass string `mapstructure:"DB_PASSWORD"`
-	DBName string `mapstructure:"DB_NAME"`
-	DBCON  string `mapstructure:"DB_CON"`
+	Port  string `mapstructure:"PORT"`
+	DBCON string `mapstructure:"DB_CON"`
 }
 
 func main() {
@@ -43,24 +38,13 @@ func main() {
 	viper.AutomaticEnv()
 
 	config := Config{
-		Port:   viper.GetString("PORT"),
-		DBHost: viper.GetString("DB_HOST"),
-		DBPort: viper.GetString("DB_PORT"),
-		DBUser: viper.GetString("DB_USER"),
-		//	DBPass: viper.GetString("DB_PASSWORD"),
-		DBName: viper.GetString("DB_NAME"),
-		DBCON:  viper.GetString("DB_CON"),
+		Port:  viper.GetString("PORT"),
+		DBCON: viper.GetString("DB_CON"),
 	}
 
-	// Build Postgres connection string (keyword format)
-	//dbConn := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=require connect_timeout=30", config.DBHost, config.DBPort, config.DBUser, config.DBPass, config.DBName)
-
-	dbConn := config.DBCON
-	// Log connection info (without password)
-	log.Printf("Connecting to database: postgres://%s:***@%s:%s/%s", config.DBUser, config.DBHost, config.DBPort, config.DBName)
-
+	log.Printf("Connecting to database: %s", config.DBCON)
 	// Setup database
-	db, err := database.InitDB(dbConn)
+	db, err := database.InitDB(config.DBCON)
 	if err != nil {
 		log.Fatal("Failed to initialize database:", err)
 	}
