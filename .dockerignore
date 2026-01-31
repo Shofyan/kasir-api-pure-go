@@ -1,0 +1,50 @@
+# Git
+.git
+.gitignore
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Documentation
+README.md
+README.MD
+*.md
+
+# Postman
+.postman
+postman
+*.postman_collection.json
+
+# Test files
+*_test.go
+test_*.sh
+
+# Build artifacts
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Docker files (not needed inside container)
+Dockerfile
+docker-compose.yml
+docker-compose*.yml
+.dockerignore
+
+# Environment examples
+env.example
+*.example
+
+# Temporary files
+tmp
+temp
+*.tmp
+*.log

@@ -1,0 +1,52 @@
+services:
+  # Kasir API Application
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: kasir-api
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+      # Use this for local PostgreSQL (Docker)
+      - DB_CON=postgresql://postgres:postgres@db:5432/kasir?sslmode=disable
+      # Uncomment below to use Supabase (external database) instead
+      # - DB_CON=${DB_CON}
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - kasir-network
+    restart: unless-stopped
+
+  # PostgreSQL Database (Local Development)
+  db:
+    image: postgres:16-alpine
+    container_name: kasir-db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=kasir
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      # Mount init.sql for automatic migration on first run
+      - ./migrations/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    networks:
+      - kasir-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d kasir"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+networks:
+  kasir-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+    driver: local
