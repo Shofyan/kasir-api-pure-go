@@ -31,8 +31,6 @@ WORKDIR /root/
 # Copy the binary from builder stage
 COPY --from=builder /app/main .
 
-# Copy .env file
-COPY --from=builder /app/.env .
 
 # Expose port from environment variable
 EXPOSE ${PORT}
