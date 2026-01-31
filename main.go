@@ -21,13 +21,16 @@ import (
 )
 
 type Config struct {
-	Port   string `mapstructure:"PORT"`
-	DBHost string `mapstructure:"DB_HOST"`
-	DBPort string `mapstructure:"DB_PORT"`
-	DBUser string `mapstructure:"DB_USER"`
-	DBPass string `mapstructure:"DB_PASSWORD"`
-	DBName string `mapstructure:"DB_NAME"`
-	DBCON  string `mapstructure:"DB_CON"`
+	Port string `mapstructure:"port"`
+
+	DB struct {
+		Host     string `mapstructure:"host"`
+		Port     string `mapstructure:"port"`
+		User     string `mapstructure:"user"`
+		Password string `mapstructure:"password"`
+		Name     string `mapstructure:"name"`
+		Conn     string `mapstructure:"con"`
+	} `mapstructure:"db"`
 }
 
 func main() {
