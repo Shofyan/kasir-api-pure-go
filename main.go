@@ -21,16 +21,13 @@ import (
 )
 
 type Config struct {
-	Port string `mapstructure:"port"`
-
-	DB struct {
-		Host     string `mapstructure:"host"`
-		Port     string `mapstructure:"port"`
-		User     string `mapstructure:"user"`
-		Password string `mapstructure:"password"`
-		Name     string `mapstructure:"name"`
-		Conn     string `mapstructure:"con"`
-	} `mapstructure:"db"`
+	Port   string `mapstructure:"PORT"`
+	DBHost string `mapstructure:"DB_HOST"`
+	DBPort string `mapstructure:"DB_PORT"`
+	DBUser string `mapstructure:"DB_USER"`
+	DBPass string `mapstructure:"DB_PASSWORD"`
+	DBName string `mapstructure:"DB_NAME"`
+	DBCON  string `mapstructure:"DB_CON"`
 }
 
 func main() {
@@ -50,10 +47,10 @@ func main() {
 	}
 
 	// Build Postgres connection string (keyword format)
-	dbConn := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=require connect_timeout=30", config.DB.Host, config.DB.Port, config.DB.User, config.DB.Password, config.DB.Name)
+	dbConn := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=require connect_timeout=30", config.DBHost, config.DBPort, config.DBUser, config.DBPass, config.DBName)
 
 	// Log connection info (without password)
-	log.Printf("Connecting to database: postgres://%s:***@%s:%s/%s", config.DB.User, config.DB.Host, config.DB.Port, config.DB.Name)
+	log.Printf("Connecting to database: postgres://%s:***@%s:%s/%s", config.DBUser, config.DBHost, config.DBPort, config.DBName)
 
 	// Setup database
 	db, err := database.InitDB(dbConn)
