@@ -232,7 +232,39 @@ Response:
 
 ---
 
-## 🧠 Catatan Teknis
+## � Testing
+
+### Unit Tests
+
+Jalankan unit tests:
+
+```bash
+go test -v
+```
+
+### API Testing
+
+Gunakan script testing untuk menguji endpoint categories:
+
+```bash
+./test_categories.sh
+```
+
+Atau test manual dengan curl:
+
+```bash
+# Get all categories
+curl -X GET "http://127.0.0.1:8080/api/categories"
+
+# Create category
+curl -X POST "http://127.0.0.1:8080/api/categories" \
+  -H "Content-Type: application/json" \
+  -d '{"name": "Test", "description": "Test category"}'
+```
+
+---
+
+## �🧠 Catatan Teknis
 
 * Data produk/kategori disimpan di database (PostgreSQL)
 * Clean Architecture: handler → service → repository
