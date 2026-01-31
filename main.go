@@ -41,9 +41,15 @@ func main() {
 		_ = viper.ReadInConfig()
 	}
 
-	var config Config
-	if err := viper.Unmarshal(&config); err != nil {
-		log.Fatalf("unable to decode into struct, %v", err)
+	viper.AutomaticEnv()
+
+	config := Config{
+		Port:   viper.GetString("PORT"),
+		DBHost: viper.GetString("DB_HOST"),
+		DBPort: viper.GetString("DB_PORT"),
+		DBUser: viper.GetString("DB_USER"),
+		DBPass: viper.GetString("DB_PASSWORD"),
+		DBName: viper.GetString("DB_NAME"),
 	}
 
 	// Build Postgres connection string (keyword format)
