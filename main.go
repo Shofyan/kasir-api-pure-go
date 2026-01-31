@@ -47,7 +47,7 @@ func main() {
 		DBHost: viper.GetString("DB_HOST"),
 		DBPort: viper.GetString("DB_PORT"),
 		DBUser: viper.GetString("DB_USER"),
-		DBPass: viper.GetString("DB_PASSWORD"),
+		//	DBPass: viper.GetString("DB_PASSWORD"),
 		DBName: viper.GetString("DB_NAME"),
 		DBCON:  viper.GetString("DB_CON"),
 	}
