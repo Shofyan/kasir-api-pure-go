@@ -50,10 +50,10 @@ func main() {
 	}
 
 	// Build Postgres connection string (keyword format)
-	dbConn := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=require connect_timeout=30", config.DBHost, config.DBPort, config.DBUser, config.DBPass, config.DBName)
+	dbConn := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=require connect_timeout=30", config.DB.Host, config.DB.Port, config.DB.User, config.DB.Password, config.DB.Name)
 
 	// Log connection info (without password)
-	log.Printf("Connecting to database: postgres://%s:***@%s:%s/%s", config.DBUser, config.DBHost, config.DBPort, config.DBName)
+	log.Printf("Connecting to database: postgres://%s:***@%s:%s/%s", config.DB.User, config.DB.Host, config.DB.Port, config.DB.Name)
 
 	// Setup database
 	db, err := database.InitDB(dbConn)
