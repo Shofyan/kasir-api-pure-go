@@ -1,0 +1,291 @@
+{
+	"info": {
+		"_postman_id": "a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d",
+		"name": "Kasir API",
+		"description": "A simple REST API for managing products and categories in a Kasir (Cashier) system.\n\nBase URL: `http://localhost:8080`",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get All Products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/produk",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"produk"
+					]
+				},
+				"description": "Retrieves a list of all products."
+			},
+			"response": []
+		},
+		{
+			"name": "Create Product",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Sample Product\",\n\t\"price\": 10000,\n\t\"stock\": 100,\n\t\"category_id\": 1\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/produk",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"produk"
+					]
+				},
+				"description": "Creates a new product."
+			},
+			"response": []
+		},
+		{
+			"name": "Get Product by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/produk/:id",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"produk",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1",
+							"description": "Product ID"
+						}
+					]
+				},
+				"description": "Retrieves a single product by its ID."
+			},
+			"response": []
+		},
+		{
+			"name": "Update Product",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Updated Product\",\n\t\"price\": 15000,\n\t\"stock\": 50,\n\t\"category_id\": 1\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/produk/:id",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"produk",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1",
+							"description": "Product ID"
+						}
+					]
+				},
+				"description": "Updates an existing product by its ID."
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Product",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/produk/:id",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"produk",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1",
+							"description": "Product ID"
+						}
+					]
+				},
+				"description": "Deletes a product by its ID."
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Categories",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/categories",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"categories"
+					]
+				},
+				"description": "Retrieves a list of all categories."
+			},
+			"response": []
+		},
+		{
+			"name": "Create Category",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Sample Category\",\n\t\"description\": \"A sample category description\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/categories",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"categories"
+					]
+				},
+				"description": "Creates a new category."
+			},
+			"response": []
+		},
+		{
+			"name": "Get Category by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/categories/:id",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"categories",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1",
+							"description": "Category ID"
+						}
+					]
+				},
+				"description": "Retrieves a single category by its ID."
+			},
+			"response": []
+		},
+		{
+			"name": "Update Category",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Updated Category\",\n\t\"description\": \"An updated category description\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/categories/:id",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"categories",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1",
+							"description": "Category ID"
+						}
+					]
+				},
+				"description": "Updates an existing category by its ID."
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Category",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/categories/:id",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"categories",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1",
+							"description": "Category ID"
+						}
+					]
+				},
+				"description": "Deletes a category by its ID."
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+}
