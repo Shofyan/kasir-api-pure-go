@@ -1,6 +1,6 @@
-# 🛒 Golang REST API CRUD Produk (Standard Library Only)
+# 🛒 Golang REST API CRUD Produk & Kategori (Standard Library Only)
 
-Project ini adalah contoh **REST API CRUD Produk** yang dibangun menggunakan **library bawaan Golang (standard library)** tanpa framework tambahan seperti Gin, Echo, atau Fiber.
+Project ini adalah contoh **REST API CRUD Produk & Kategori** yang dibangun menggunakan **library bawaan Golang (standard library)** tanpa framework tambahan seperti Gin, Echo, atau Fiber.
 
 Tujuan utama project ini adalah untuk memahami **fondasi backend Golang yang benar**, ringan, cepat, dan mudah dikembangkan ke arsitektur yang lebih besar.
 
@@ -8,17 +8,10 @@ Tujuan utama project ini adalah untuk memahami **fondasi backend Golang yang ben
 
 ## ✨ Fitur
 
-* Create produk
-* Read semua produk
-* Read produk berdasarkan ID
-* Update produk
-* Delete produk
-* Search produk berdasarkan:
-
-  * Nama (partial match)
-  * Harga minimum
-  * Harga maksimum
-* Thread-safe (menggunakan `sync.RWMutex`)
+* Create, Read, Update, Delete produk
+* Create, Read, Update, Delete kategori
+* Clean Architecture (handler → service → repository)
+* Integrasi database (PostgreSQL)
 * Tanpa dependency eksternal
 
 ---
@@ -26,11 +19,18 @@ Tujuan utama project ini adalah untuk memahami **fondasi backend Golang yang ben
 ## 🧱 Struktur Data
 
 ```go
-type Produk struct {
-	ID    int    `json:"id"`
-	Nama  string `json:"nama"`
-	Harga int    `json:"harga"`
-	Stok  int    `json:"stok"`
+type Product struct {
+	ID         int    `json:"id"`
+	Name       string `json:"name"`
+	Price      int    `json:"price"`
+	Stock      int    `json:"stock"`
+	CategoryID int    `json:"category_id"`
+}
+
+type Category struct {
+	ID          int    `json:"id"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
 }
 ```
 
@@ -93,12 +93,84 @@ Response:
 
 ---
 
-### 📄 Get Semua Produk
+### ➕ Create Category
 
-**GET** `/produk`
+**POST** `/api/categories`
+
+- Accepts JSON, `application/x-www-form-urlencoded`, or `multipart/form-data`.
+
+Contoh JSON:
+```json
+{
+  "name": "Sabun",
+  "description": "Sabun mandi"
+}
+```
+
+Contoh curl form-data:
+```bash
+curl --location 'http://localhost:8080/api/categories' \
+  --form 'name="sabun"' \
+  --form 'description="sabun"'
+```
+
+Response:
+```json
+{
+  "id": 1,
+  "name": "Sabun",
+  "description": "Sabun mandi"
+}
+```
+
+---
+
+### 📄 Get Semua Category
+
+**GET** `/api/categories`
 
 ```bash
-curl http://localhost:8080/produk
+curl http://localhost:8080/api/categories
+```
+
+---
+
+### 🔎 Get Category by ID
+
+**GET** `/api/categories/{id}`
+
+```bash
+curl http://localhost:8080/api/categories/1
+```
+
+---
+
+### ✏️ Update Category
+
+**PUT** `/api/categories/{id}`
+
+- Accepts JSON or form-data.
+
+```json
+{
+  "name": "Sabun Cuci",
+  "description": "Sabun untuk mencuci"
+}
+```
+
+---
+
+### ❌ Delete Category
+
+**DELETE** `/api/categories/{id}`
+
+```bash
+curl -X DELETE http://localhost:8080/api/categories/1
+```
+
+Response:
+```json
+{"message": "Category deleted successfully"}
 ```
 
 ---
@@ -112,13 +184,10 @@ Query parameter:
 | Parameter | Keterangan                            |
 | --------- | ------------------------------------- |
 | nama      | Cari berdasarkan nama (partial match) |
-| minHarga  | Harga minimum                         |
-| maxHarga  | Harga maksimum                        |
 
 Contoh:
 
 ```bash
-curl "http://localhost:8080/produk?nama=lap&minHarga=1000000"
 ```
 
 ---
@@ -165,10 +234,10 @@ Response:
 
 ## 🧠 Catatan Teknis
 
-* Data disimpan **in-memory**
-* Tidak menggunakan database
+* Data produk/kategori disimpan di database (PostgreSQL)
+* Clean Architecture: handler → service → repository
+* Mendukung request dari HTMX (form) dan API (JSON)
 * Cocok untuk:
-
   * belajar REST API Golang
   * interview backend
   * prototype
