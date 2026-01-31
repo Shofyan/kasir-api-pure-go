@@ -7,7 +7,6 @@
 package main
 
 import (
-	"fmt"
 	"kasir-api/database"
 	"kasir-api/handlers"
 	"kasir-api/repositories"
@@ -50,11 +49,13 @@ func main() {
 		DBUser: viper.GetString("DB_USER"),
 		DBPass: viper.GetString("DB_PASSWORD"),
 		DBName: viper.GetString("DB_NAME"),
+		DBCON:  viper.GetString("DB_CON"),
 	}
 
 	// Build Postgres connection string (keyword format)
-	dbConn := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=require connect_timeout=30", config.DBHost, config.DBPort, config.DBUser, config.DBPass, config.DBName)
+	//dbConn := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=require connect_timeout=30", config.DBHost, config.DBPort, config.DBUser, config.DBPass, config.DBName)
 
+	dbConn := config.DBCON
 	// Log connection info (without password)
 	log.Printf("Connecting to database: postgres://%s:***@%s:%s/%s", config.DBUser, config.DBHost, config.DBPort, config.DBName)
 
