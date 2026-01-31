@@ -46,8 +46,11 @@ func main() {
 		log.Fatalf("unable to decode into struct, %v", err)
 	}
 
-	// Build Postgres connection string (add sslmode=disable for local/cloud compatibility)
-	dbConn := fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=require&connect_timeout=10&tcp_keepalives_idle=60&tcp_keepalives_interval=60&tcp_keepalives_count=10", config.DBUser, config.DBPass, config.DBHost, config.DBPort, config.DBName)
+	// Build Postgres connection string (keyword format)
+	dbConn := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=require connect_timeout=30", config.DBHost, config.DBPort, config.DBUser, config.DBPass, config.DBName)
+
+	// Log connection info (without password)
+	log.Printf("Connecting to database: postgres://%s:***@%s:%s/%s", config.DBUser, config.DBHost, config.DBPort, config.DBName)
 
 	// Setup database
 	db, err := database.InitDB(dbConn)
