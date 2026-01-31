@@ -2,10 +2,10 @@
 -- Description: Rollback initial database schema
 
 -- Drop indexes
-DROP INDEX IF EXISTS idx_products_category_id;
-DROP INDEX IF EXISTS idx_products_name;
-DROP INDEX IF EXISTS idx_categories_name;
+DROP INDEX IF EXISTS idx_product_category_id;
+DROP INDEX IF EXISTS idx_product_name;
+DROP INDEX IF EXISTS idx_category_name;
 
 -- Drop tables (order matters due to foreign key)
-DROP TABLE IF EXISTS products;
-DROP TABLE IF EXISTS categories;
+DROP TABLE IF EXISTS product;
+DROP TABLE IF EXISTS category;
