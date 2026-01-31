@@ -32,8 +32,9 @@ type Config struct {
 
 func main() {
 
-	viper.AutomaticEnv()
+	viper.SetConfigType("env")
 	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
+	viper.AutomaticEnv()
 
 	if _, err := os.Stat(".env"); err == nil {
 		viper.SetConfigFile(".env")
@@ -41,8 +42,7 @@ func main() {
 	}
 
 	var config Config
-	err := viper.Unmarshal(&config)
-	if err != nil {
+	if err := viper.Unmarshal(&config); err != nil {
 		log.Fatalf("unable to decode into struct, %v", err)
 	}
 
