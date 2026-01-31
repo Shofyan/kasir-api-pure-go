@@ -14,7 +14,6 @@ import (
 	"kasir-api/services"
 	"log"
 	"net/http"
-	"os"
 	"strings"
 
 	"github.com/spf13/viper"
@@ -35,11 +34,6 @@ func main() {
 	viper.SetConfigType("env")
 	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
 	viper.AutomaticEnv()
-
-	if _, err := os.Stat(".env"); err == nil {
-		viper.SetConfigFile(".env")
-		_ = viper.ReadInConfig()
-	}
 
 	var config Config
 	if err := viper.Unmarshal(&config); err != nil {
